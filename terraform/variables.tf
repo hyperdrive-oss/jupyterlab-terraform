@@ -8,8 +8,8 @@ variable "ami" {
 }
 variable "keypair_name" {
   description = "MyKeyPair"
-  default = "~/.aws/key.pem""
+  default = "MyKeyPair"
 }
 variable "private_key_path" {
-  default = "~/.aws/key.pem""
+  default = "~/.aws/key.pem"
 }
