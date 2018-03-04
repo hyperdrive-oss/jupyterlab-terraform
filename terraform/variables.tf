@@ -6,7 +6,10 @@ variable "ami" {
   description = "aws AMI number (default: Ubuntu 16.04LTS)"
   default = "ami-927185ef"
 }
-
+variable "instance_type" {
+  description = "Ec2 instance type. can use general or burstable t2 version for"
+  default = "t2.large"
+}
 variable "default_tags" {
   type = "map"
   default = {

@@ -37,7 +37,7 @@ resource "aws_security_group" "jupyter_notebook_sg" {
 resource "aws_instance" "Node" {
     count = 1
     ami = "${var.ami}"
-    instance_type = "t2.large" # m4.xlarge
+    instance_type = "${var.instance_type}"
     key_name = "${var.keypair_name}"
     tags = "${var.default_tags}"
     vpc_security_group_ids = ["${aws_security_group.jupyter_notebook_sg.id}"]
