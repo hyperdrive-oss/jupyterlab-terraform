@@ -39,9 +39,7 @@ resource "aws_instance" "Node" {
     ami = "${var.ami}"
     instance_type = "t2.large" # m4.xlarge
     key_name = "${var.keypair_name}"
-    tags {
-        Name = "Jupyter Notebook Meganode"
-    }
+    tags = "${var.default_tags}"
     vpc_security_group_ids = ["${aws_security_group.jupyter_notebook_sg.id}"]
 
     provisioner "file" {
