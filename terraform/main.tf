@@ -36,9 +36,9 @@ resource "aws_security_group" "jupyter_notebook_sg" {
 
 resource "aws_instance" "Node" {
     count = 1
-    ami = "ami-927185ef" # https://cloud-images.ubuntu.com/locator/ec2/
+    ami = "${var.ami}"
     instance_type = "t2.large" # m4.xlarge
-    key_name = "CELAB-StanleyZheng-Keypair"
+    key_name = "${var.keypair_name}"
     tags {
         Name = "Jupyter Notebook Meganode"
     }
@@ -51,7 +51,7 @@ resource "aws_instance" "Node" {
         connection {
             type     = "ssh"
             user     = "ubuntu"
-            private_key = "${file("~/.aws/celab-sz.pem")}"
+            private_key = "${file(var.private_key_path)}"
         }
     }
 
@@ -63,7 +63,7 @@ resource "aws_instance" "Node" {
         connection {
             type     = "ssh"
             user     = "ubuntu"
-            private_key = "${file("~/.aws/celab-sz.pem")}"
+            private_key = "${file(var.private_key_path)}"
         }
 
     }
