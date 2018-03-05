@@ -53,6 +53,16 @@ resource "aws_instance" "Node" {
         }
     }
 
+    provisioner "file" {
+        source      = "jupyterlab.conf"
+        destination = "/etc/init.d/jupyterlab.conf"
+
+        connection {
+            type     = "ssh"
+            user     = "ubuntu"
+            private_key = "${file(var.private_key_path)}"
+        }
+    }
     provisioner "remote-exec" {
         inline = [
             "chmod +x /tmp/configure.sh",
